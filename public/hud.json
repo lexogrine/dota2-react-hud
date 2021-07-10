@@ -5,6 +5,7 @@
     "legacy": false,
     "radar": true,
     "killfeed": true,
+    "game":"dota2",
     "boltobserv":{
         "css":true,
         "maps":true
