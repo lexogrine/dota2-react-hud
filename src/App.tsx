@@ -2,13 +2,15 @@ import React from 'react';
 import Layout from './HUD/Layout/Layout';
 import { port, isDev } from './api/api';
 import ActionManager, { ConfigManager } from './api/actionManager';
+import { Dota2, DOTA2GSI } from 'dotagsi';
+import { io } from "socket.io-client";
 
-import { GSISocket } from "csgogsi-socket";
-import { Match } from './api/interfaces';
-import { DOTA2GSI } from './dota2gsi';
+const DOTA2 = new DOTA2GSI();
+const socket = io(isDev ? `localhost:${port}` : '/');
 
-export const { GSI, socket } = GSISocket(isDev ? `localhost:${port}` : '/', "update");
-const Dota2 = new DOTA2GSI();
+socket.on('update', (data: any) => {
+	DOTA2.digest(data);
+});
 
 export const actions = new ActionManager();
 export const configs = new ConfigManager();
@@ -26,70 +28,7 @@ const dataLoader: DataLoader = {
 	match: null
 }*/
 
-const getPlayerInfo = (dota2gsi: any, id: number, attribute: string) => {
-	if(!dota2gsi || !dota2gsi[attribute]) return null;
-	const teams = Object.values(dota2gsi[attribute]) as any[];
-	for(const team of teams){
-		if(team[`player${id}`]){
-			if(attribute !== 'abilities' && attribute !== 'items'){
-				return team[`player${id}`];
-			}
-			if(attribute === 'abilities'){
-				return Object.values(team[`player${id}`]);
-			}
-			const response: any = {};
-			for(const key of Object.keys(team[`player${id}`])){
-				if(key.includes('neutral')){
-					if(!response.neutrals){
-						response.neutrals = [];
-					}
-					response.neutrals.push(team[`player${id}`][key]);
-				} else if (key.includes('slot')){
-					if(!response.slots){
-						response.slots = [];
-					}
-					response.slots.push(team[`player${id}`][key])
-				} else if (key.includes('stash')){
-					if(!response.stashes){
-						response.stashes = [];
-					}
-					response.stashes.push(team[`player${id}`][key])
-				}  else if (key.includes('teleport')){
-					if(!response.teleports){
-						response.teleports = [];
-					}
-					response.teleports.push(team[`player${id}`][key])
-				} 
-			}
-			return response;
-		}
-	}
-	return null;
-}
-
-
-const getObservedPlayer = (dota2gsi: any): any => {
-	if(!dota2gsi || !dota2gsi.hero) return null;
-	const teams = Object.values(dota2gsi.hero) as any[];
-	for(const team of teams){
-		for(const playerId of Object.keys(team)){
-			const id = Number(playerId.replace("player",""));
-			team[playerId].obs_slot = id;
-			if(team[playerId].selected_unit){
-				const player = {
-					player: getPlayerInfo(dota2gsi, id, 'player'),
-					hero: team[playerId],
-					abilities: getPlayerInfo(dota2gsi, id, 'abilities'),
-					items: getPlayerInfo(dota2gsi, id, 'items'),
-				}
-				return player;
-			}
-		}
-	}
-	return null;
-}
-
-class App extends React.Component<any, { game: any | null }> {
+class App extends React.Component<any, { game: Dota2 | null }> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
@@ -170,16 +109,8 @@ class App extends React.Component<any, { game: any | null }> {
 			window.top.location.reload();
 		});
 
-		GSI.on('data', game => {
-			/*if (!this.state.game || this.state.steamids.length) this.verifyPlayers(game);
-			this.setState({ game }, () => {
-				if (!this.state.checked) this.loadMatch();
-			});*/
-		});
-		socket.on('update', Dota2.digest);
-		Dota2.on('data', (data: any) => {
-			const player = getObservedPlayer(data);
-			this.setState({ game: { player }});
+		DOTA2.on('data', data => {
+			this.setState({ game: data });
 		})
 		socket.on('match', () => {
 

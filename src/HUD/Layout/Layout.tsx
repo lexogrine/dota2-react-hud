@@ -1,3 +1,4 @@
+import { Dota2 } from "dotagsi";
 import React from "react";
 import Observed from "./../Players/Observed";
 
@@ -5,7 +6,7 @@ import Observed from "./../Players/Observed";
 
 
 interface Props {
-  game: any,
+  game: Dota2,
 }
 
 export default class Layout extends React.Component<Props> {
