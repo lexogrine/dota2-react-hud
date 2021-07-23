@@ -16,7 +16,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 
 						<div className={`avatar`}>
 
-							<img src={`./heroes/${player.hero.name.replace('npc_dota_hero_', '')}_full.png`} width={140} alt={'Avatar'} />
+							<img src={`./heroes/${player.hero.name.replace('npc_dota_hero_', '')}.png`} width={140} alt={'Avatar'} />
 
 						</div>
 						<div className="username_container">
@@ -35,7 +35,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 					</div>
 					<div className="statistics">
 						{
-							player.items.filter(item => item.type === "slot").map(item => item.name !== "empty" ? <img src={`./items/${item.name.replace('item_', '')}_lg.png`} height={43} /> : null)
+							player.items.filter(item => item.type === "slot").map(item => item.name !== "empty" ? <img src={`./items/${item.name.replace('item_', '')}.png`} height={43} /> : null)
 						}
 					</div>
 					<div className="bar-container">

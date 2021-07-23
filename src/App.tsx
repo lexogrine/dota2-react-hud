@@ -1,9 +1,11 @@
 import React from 'react';
 import Layout from './HUD/Layout/Layout';
-import { port, isDev } from './api/api';
+import api, { port, isDev } from './api/api';
 import ActionManager, { ConfigManager } from './api/actionManager';
-import { Dota2, DOTA2GSI } from 'dotagsi';
+import { Dota2, DOTA2GSI, PlayerExtension } from 'dotagsi';
 import { io } from "socket.io-client";
+import { loadAvatarURL } from './api/avatars';
+import { Match } from './api/interfaces';
 
 const DOTA2 = new DOTA2GSI();
 const socket = io(isDev ? `localhost:${port}` : '/');
@@ -19,25 +21,28 @@ export const hudIdentity = {
 	name: '',
 	isDev: false
 };
-/*
+
 interface DataLoader {
 	match: Promise<void> | null
 }
-/*
+
 const dataLoader: DataLoader = {
 	match: null
-}*/
+}
 
-class App extends React.Component<any, { game: Dota2 | null }> {
+class App extends React.Component<any, { game: Dota2 | null, steamids: string[], match: Match | null, checked: boolean }> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			game: null
+			game: null,
+			steamids: [],
+			match: null,
+			checked: false
 		}
 	}
 
-	verifyPlayers = async (game: any) => {
-		/*const steamids = game.players.map(player => player.steamid);
+	verifyPlayers = async (game: Dota2) => {
+		const steamids = game.players.map(player => player.steamid);
 		steamids.forEach(steamid => {
 			loadAvatarURL(steamid);
 		})
@@ -46,7 +51,7 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 			return;
 		}
 
-		const loaded = GSI.players.map(player => player.steamid);
+		const loaded = DOTA2.players.map(player => player.steamid);
 
 		const extensioned = await api.players.get();
 
@@ -66,13 +71,13 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 				})
 			);
 
-		const gsiLoaded = GSI.players;
+		const gsiLoaded = DOTA2.players;
 
 		gsiLoaded.push(...players);
 
-		GSI.players = gsiLoaded;
+		DOTA2.players = gsiLoaded;
 
-		this.setState({ steamids });*/
+		this.setState({ steamids });
 	}
 
 
@@ -120,7 +125,7 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 	}
 
 	loadMatch = async (force = false) => {
-		/*if (!dataLoader.match || force) {
+		if (!dataLoader.match || force) {
 			dataLoader.match = new Promise((resolve) => {
 				api.match.getCurrent().then(match => {
 					if (!match) {
@@ -130,8 +135,8 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 					this.setState({ match });
 
 					let isReversed = false;
-					if (GSI.last) {
-						const mapName = GSI.last.map.name.substring(GSI.last.map.name.lastIndexOf('/') + 1);
+					if (DOTA2.last) {
+						const mapName = DOTA2.last.map.name.substring(DOTA2.last.map.name.lastIndexOf('/') + 1);
 						const current = match.vetos.filter(veto => veto.mapName === mapName)[0];
 						if (current && current.reverseSide) {
 							isReversed = true;
@@ -143,17 +148,17 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 							const gsiTeamData = { id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra };
 
 							if (!isReversed) {
-								GSI.teams.left = gsiTeamData;
+								DOTA2.teams.radiant = gsiTeamData;
 							}
-							else GSI.teams.right = gsiTeamData;
+							else DOTA2.teams.dire = gsiTeamData;
 						});
 					}
 					if (match.right.id) {
 						api.teams.getOne(match.right.id).then(right => {
 							const gsiTeamData = { id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra };
 
-							if (!isReversed) GSI.teams.right = gsiTeamData;
-							else GSI.teams.left = gsiTeamData;
+							if (!isReversed) DOTA2.teams.dire = gsiTeamData;
+							else DOTA2.teams.radiant = gsiTeamData;
 						});
 					}
 
@@ -163,12 +168,12 @@ class App extends React.Component<any, { game: Dota2 | null }> {
 					dataLoader.match = null;
 				});
 			});
-		}*/
+		}
 	}
 	render() {
 		if (!this.state.game) return '';
 		return (
-			<Layout game={this.state.game} />
+			<Layout game={this.state.game} match={this.state.match} />
 		);
 	}
 

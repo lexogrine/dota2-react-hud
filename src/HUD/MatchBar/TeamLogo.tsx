@@ -1,5 +1,5 @@
 import React from 'react';
-import { Team } from 'csgogsi-socket';
+import { Team } from 'dotagsi';
 import * as I from '../../api/interfaces';
 import { apiUrl } from './../../api/api';
 

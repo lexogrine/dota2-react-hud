@@ -24,36 +24,18 @@
 	width: 1148px;
 	height: 70px;
 	top: 10px;
+	color: white;
 	left: 50%;
 	transform: translateX(-50%);
-	.CT {
-		color: var(--color-new-ct);
-		.round-thingy {
-			.inner {
-				background-color: #28abff;
-			}
-			background-color: #28abff80;
-		}
-	}
-	.T {
-		color: var(--color-new-t);
-		.round-thingy {
-			.inner {
-				background-color: #ffc600;
-			}
-			background-color: #ffc60080;
-		}
-	}
+
 	#timer {
 		display: flex;
 		flex-direction: column;
-		position: relative;
 		width: 126px;
 		height: 115px;
 		margin-left: 8px;
 		margin-right: 8px;
 		background-color: var(--sub-panel-color);
-        top: -10px;
         &.no-bo {
             height: 87px;
         }
@@ -200,84 +182,10 @@
 		flex-direction: row;
 		width: 10px;
         height: 70px;
-        &.CT {
-            background-color: var(--color-new-ct);
-        }
-        &.T {
-            background-color: var(--color-new-t);
-        }
 	}
 
 }
-.win_text {
-	position: fixed;
-	display: none;
-	opacity: 1;
-	width: 503px;
-	height: 50px;
-	top: 70px;
-	align-items: center;
-	color: black;
-	justify-content: center;
-	background-color: white;
-	font-size: 20px;
-	font-family: Montserrat;
-    font-weight: 600;
-    &.show {
-        display: flex;
-        animation: ShowWinCycle 5s linear 1;
-        animation-fill-mode: forwards;
-    }
-    &.right {
-        left: calc(50% + 71px);
-    }
-    &.left {
-        right: calc(50% + 71px);
-    }
-}
 
-.defuse_plant_container {
-	position: fixed;
-	display: flex;
-	opacity: 1;
-	width: 503px;
-	height: 49px;
-	top: 70px;
-	align-items: center;
-	color: white;
-    justify-content: center;
-    background-color: rgba(0,0,0,0.65);
-	.defuse_plant_bar {
-		height: 49px;
-		background-color: #3c3c3c;
-		position: absolute;
-		width: 0%;
-	}
-	.defuse_plant_caption {
-		z-index: 1;
-		display: flex;
-		text-transform: uppercase;
-		align-items: flex-end;
-		svg {
-			margin-right: 13px;
-		}
-    }
-    &.right {
-        left: calc(50% + 71px);
-        .defuse_plant_bar {
-            left: 0;
-        }
-    }
-    &.left {
-        right: calc(50% + 71px);
-        .defuse_plant_bar {
-            right: 0;
-        }
-    }
-    &.hide {
-        opacity: 0;
-    }
-}
 #encapsulator {
 	overflow: hidden;
 	display: flex;
@@ -289,31 +197,16 @@
 	height: 50px;
 	left: 50%;
 	transform: translateX(-50%);
-	.CT {
-		color: var(--color-new-ct);
-	}
-	.T {
-		color: var(--color-new-t);
-	}
+
 	.wins_bar {
 		display: flex;
 		flex-direction: row;
 		width: 10px;
 		height: 30px;
 	}
-	.wins_bar.CT {
-		background-color: var(--color-new-ct);
-	}
-	.wins_bar.T {
-		background-color: var(--color-new-t);
-	}
+
 }
-.alert_bar.CT {
-	background-color: var(--color-new-ct);
-}
-.alert_bar.T {
-	background-color: var(--color-new-t);
-}
+
 #series_container {
 	display: flex;
 	flex-direction: row;
@@ -376,16 +269,8 @@
 	margin-left: 2px;
 	margin-right: 2px;
 	box-sizing: border-box;
-}
-.wins_box.CT {
-	background-color: rgba(0,0,0,0.6);
-}
-.wins_box.CT.win {
-	background-color: var(--color-new-ct);
-}
-.wins_box.T {
-	background-color: rgba(0,0,0,0.6);
-}
-.wins_box.T.win {
-	background-color: var(--color-new-t);
+	background-color:rgba(0,0,0,0.25);
+	&.win {
+		background-color: rgba(255,255,255,1);
+	}
 }
