@@ -17,7 +17,7 @@ For keybinds & panel API read [csgo-react-hud docs](https://github.com/lexogrine
 
 # Download
 
-To download it just click here: [DOWNLOAD HUD](https://github.com/lexogrine/csgo-react-hud/releases/latest)
+To download it just click here: [DOWNLOAD HUD](https://github.com/lexogrine/dota2-react-hud/releases/latest)
 
 # Note
 
