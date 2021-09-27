@@ -1,0 +1,222 @@
+.player_scoreboard{
+    width:165px;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin: 0 7.5px;
+    .player_name {
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
+        text-transform: uppercase;
+    }
+    .player_picture {
+        height: 145px;
+        width: 145px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        background:red;
+        .level_container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: -66px;
+            img {
+                opacity: 0;
+            }
+            .level_value {
+                position: absolute;
+                font-size: 20px;
+                top: -90px;
+                height: 50px;
+                width: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius:50px;
+                font-weight: 700;
+                background-color: rgba(19, 0, 23, 0.9);
+            }
+        }
+    }
+    .main_panel {
+        width: 100%;
+        height: 250px;
+        margin-bottom: 5px;
+        background-color: rgba(19, 0, 23, 0.9);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .kda {
+            position: relative;
+            top: 35px;
+        }
+    }
+    .panel {
+        width: 100%;
+        height: 38px;
+        background-color: rgba(19, 0, 23, 0.9);
+        margin-bottom:5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-repeat: no-repeat;
+    }
+    .skills {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .item-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(19, 0, 23, 0.9);
+            width: 80px;
+            height: 57px;
+            box-shadow: 0px 4px 20px #070C36;
+            margin-bottom: 5px;
+        }
+    }
+}
+.neutral-item {
+    
+    width: 78px;
+    clip-path: polygon(50% 0, calc(50% + 28.5px) 50%, 50% 100%, calc(50% - 28.5px) 50%);
+    height: 57px;
+    
+    margin: auto;
+    position: relative;
+    top: -33px;
+}
+.players_scoreboard {
+    display: flex;
+    position: fixed;
+    top: 243px;
+    width: 1870px;
+    justify-content: space-between;
+    position: fixed;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    transition: opacity 1s;
+    opacity:1;
+    &.hide {
+        opacity: 0;
+    }
+    > div {
+        display: flex;
+    }
+
+}
+strong.ad {
+    text-transform: uppercase;
+    width: 200px;
+    img {
+        max-width: 34px;;
+    }
+    transition: opacity 1s;
+    opacity:1;
+    &.hide {
+        opacity: 0;
+    }
+}
+.top_board {
+    position: fixed;
+    align-items: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    top: 46px;
+    width: 916px;
+    height: 67px;
+    background-color: #130017;
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: 31px;
+    transition: opacity 1s;
+    opacity: 1;
+    text-transform: uppercase;
+    &.hide {
+        opacity: 0;
+    }
+    .score_info {
+        display: flex;
+        color: white;
+        .score_container {
+            height: 84px;
+            margin-bottom: 6px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 35px;
+            position: relative;
+            width: 71px;
+            margin: 0 10px;
+            &.dire {
+                    background-color: #BD1313;
+            }
+            &.radiant {
+                    background-color: #16349E;
+            }
+        }
+        .match_info {
+            height: 67px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-weight: 700;
+            text-shadow: 0px 0px 7px rgba(1, 3, 20, 0.2);
+
+            .match_score {
+                font-size: 15px;
+                letter-spacing: 1px;
+                width: 156px;
+                background-color: rgba(19, 0, 23, 0.9);
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-transform: uppercase;
+                position: absolute;
+                bottom: -48px;
+            }
+            .match_time {
+                font-size: 40px;
+                background: #130017;
+                width: 156px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height:84px;
+                position: relative;
+                letter-spacing: 2px;
+                align-self: center;
+            }
+        }
+    }
+    .team_logo {
+        &:first-child {
+            margin-right: auto;
+        }
+        &:last-child {
+            margin-left:auto;
+        }
+        height: 100%;
+        width: 156px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    }
+}

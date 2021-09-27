@@ -9,10 +9,11 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Stratum2', 'Montserrat', 'Roboto', sans-serif;
+  font-family: 'Rajdhani','Stratum2', 'Montserrat', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*background-image: url('./assets/bg.png');/**/
+  /*background-image: url('./HUD/image.png');/**/
+  background-position: bottom;
 }
 
 @font-face {

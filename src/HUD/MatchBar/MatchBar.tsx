@@ -32,8 +32,8 @@ export default class TeamBox extends React.Component<IProps> {
     const right = map.dire;
     const bo = (match && Number(match.matchType.substr(-1))) || 0;
 
-    const leftScore = players.filter(player => player.team_name === 'radiant').map(player => player.kills).reduce((a, b) => a + b, 0);
-    const rightScore = players.filter(player => player.team_name === 'dire').map(player => player.kills).reduce((a, b) => a + b, 0);
+    const leftScore = players.filter(player => player.team_name === 'dire').map(player => player.deaths).reduce((a, b) => a + b, 0);
+    const rightScore = players.filter(player => player.team_name === 'radiant').map(player => player.deaths).reduce((a, b) => a + b, 0);
 
     return (
       <>

@@ -1,0 +1,233 @@
+.background {
+    position: absolute;
+    background-color: rgba(27, 30, 69, 0.9);
+    width: 100%;
+    height: 100%;
+    
+    transition: opacity 1s;
+    opacity:1;
+    &.hide {
+        opacity: 0;
+    }
+}
+.draft-screen-container {
+    transition: opacity 1s;
+    opacity:1;
+    &.hide {
+        opacity: 0;
+    }
+}
+.draft-container {
+    display: flex;
+    position: fixed;
+    margin-left:50%;
+    transform: translateX(-50%);
+    bottom: 104px;
+}
+
+.tournament_info {
+    width: 139px;
+    height: 145px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .bo {
+        height: 33px;
+        width: 100%;
+        background-color: rgba(19, 0, 23, 0.9);
+        color: white;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        justify-content: center;
+        text-transform: uppercase;
+    }
+    .picker_and_logo {
+        display: flex;
+        flex: 1;
+        background-color: rgba(19, 0, 23, 0.9);
+        background-repeat: no-repeat;
+        background-position: center;
+        justify-content: space-between;
+        background-size: cover;
+        .side_pick{
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            background-repeat: no-repeat;
+            background-position: center;
+            max-width: 45px;
+        
+            &.left {
+                background-image: url('./leftPick.png');
+                &.active {
+                    background-image: url('./leftPickActive.png');
+                }
+            }
+            &.right {
+                background-image: url('./rightPick.png');
+                &.active {
+                    background-image: url('./rightPickActive.png');
+                }
+            }
+        }
+    }
+}
+.players_draft {
+    display: flex;
+
+    &.radiant {
+        flex-direction: row-reverse;
+    }
+}
+.players_draft_ban {
+    display: flex;
+    &.radiant {
+        flex-direction: row-reverse;
+    }
+}
+.team_draft_ban {
+    position: absolute;
+    &.radiant {
+        right: 0;
+    }
+    &.dire {
+        left: 0;
+    }
+    top: 4px;
+}
+.player_ban {
+    margin: 0 2px;
+    .player_preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        width: 36px;
+        height: 36px;
+        img {
+            height: 36px;
+        }
+    }
+}
+.player_draft {
+    width:123px;
+    height:145px;
+    display:flex;
+    flex-direction: column;
+    margin:0 1.5px;
+    &.dire {
+        .draft_status {
+            background-color: #BD1313;
+        }
+    }
+    &.radiant {
+        .draft_status {
+            background-color: #16349E;
+        }
+    }
+    .player_preview {
+        flex: 1;
+        background-color:rgba(19, 0, 23, 0.9);
+        display: flex;
+        background-position: center;
+        background-repeat: no-repeat;
+        .background-imgs {
+            flex:1;
+            opacity:0.3;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    }
+    .draft_status {
+        width:100%;
+        height:21px;
+        color: white;
+        text-align: center;
+        font-weight: 700;
+        font-size: 15px;
+        &.active {
+            
+        }
+        &.hidden {
+            height: 7px;
+        }
+    }
+}
+.team_info_container {
+    display: flex;
+    height: 76px;
+    width: 1390px;
+    background-color: rgba(19, 0, 23, 0.9);
+    color: white;
+    position: fixed;
+    margin-left:50%;
+    transform: translateX(-50%);
+    bottom: 24px;
+    .timer {
+        width: 139px;
+        height: 100%;
+        background-color: #0E0018;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .label {
+            font-size: 15px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
+        .timer-time {
+            font-weight: 700;
+
+            font-size: 22px;
+        }
+    }
+    .team_info {
+        flex:1;
+        display: flex;
+        position: relative;
+        .team_info_score {
+            width: 60px;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            font-weight: 700;
+        }
+        .team_squad {
+            display: flex;
+            flex-direction: column;
+            .top_bar {
+                font-size: 24px;
+            }
+            .bottom_bar {
+                font-size: 15px;
+            }
+            > div {
+                flex: 1;
+                display: flex;
+                align-items: center;
+            }
+        }
+        &.radiant {
+            .team_info_score {
+                background-color: #16349E;
+                margin-right: 8px;
+            }
+        }
+        &.dire {
+            flex-direction: row-reverse;
+            .team_info_score {
+                background-color: #BD1313;
+                margin-left: 8px;
+            }
+            .team_squad {
+                align-items: flex-end;
+            }
+        }
+    }
+}

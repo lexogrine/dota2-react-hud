@@ -6,11 +6,28 @@ import { Dota2, DOTA2GSI, PlayerExtension } from 'dotagsi';
 import { io } from "socket.io-client";
 import { loadAvatarURL } from './api/avatars';
 import { Match } from './api/interfaces';
+import Statistics from './HUD/GameHUD/ObservedStatistics';
+import TopSideBar from './HUD/GameHUD/TopSideBar';
+import "./HUD/GameHUD/gamehud.scss";
+import { exampleData } from './example';
 
 const DOTA2 = new DOTA2GSI();
 const socket = io(isDev ? `localhost:${port}` : '/');
 
+const isTest = false;
+
+if (isTest) {
+	setTimeout(() => {
+		DOTA2.digest(exampleData);
+	}, 100);
+	setTimeout(() => {
+		DOTA2.digest(exampleData)
+	}, 2000)
+}
+let i = 0;
 socket.on('update', (data: any) => {
+	if (!i) console.log(data);
+	i = 1;
 	DOTA2.digest(data);
 });
 
@@ -115,6 +132,7 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 		});
 
 		DOTA2.on('data', data => {
+			if (!this.state.game || this.state.steamids.length) this.verifyPlayers(data);
 			this.setState({ game: data });
 		})
 		socket.on('match', () => {
@@ -133,20 +151,24 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 						return;
 					}
 					this.setState({ match });
-
 					let isReversed = false;
-					if (DOTA2.last) {
-						const mapName = DOTA2.last.map.name.substring(DOTA2.last.map.name.lastIndexOf('/') + 1);
-						const current = match.vetos.filter(veto => veto.mapName === mapName)[0];
-						if (current && current.reverseSide) {
-							isReversed = true;
+					let current = match.vetos.find(veto => !veto.mapEnd);
+					console.log(DOTA2.last && DOTA2.last.map.win_team)
+					if(DOTA2.last && DOTA2.last.map.win_team !== 'none'){
+						const finished = match.vetos.filter(veto => veto.mapEnd);
+						const newCurrent = finished[finished.length - 1];
+						if(newCurrent){
+							current = newCurrent;
 						}
-						this.setState({ checked: true });
 					}
+					if (current && current.reverseSide) {
+						isReversed = true;
+					}
+					this.setState({ checked: true });
+
 					if (match.left.id) {
 						api.teams.getOne(match.left.id).then(left => {
 							const gsiTeamData = { id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra };
-
 							if (!isReversed) {
 								DOTA2.teams.radiant = gsiTeamData;
 							}
@@ -171,7 +193,7 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 		}
 	}
 	render() {
-		if (!this.state.game) return '';
+		if (!this.state.game) return null;
 		return (
 			<Layout game={this.state.game} match={this.state.match} />
 		);

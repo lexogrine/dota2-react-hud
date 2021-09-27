@@ -69,17 +69,12 @@ export interface PlayerRoundData {
 }
 
 export interface Veto {
-  teamId: string;
-  mapName: string;
-  side: "CT" | "T" | "NO";
-  type: "ban" | "pick" | "decider";
-  reverseSide?: boolean;
-  rounds?: RoundData[],
-  score?: {
-    [key: string]: number;
-  };
-  winner?: string;
-  mapEnd: boolean;
+	mapEnd: boolean;
+	winner?: string;
+	score?: {
+		[key: string]: number;
+	};
+	reverseSide?: boolean;
 }
 
 export interface Match {
