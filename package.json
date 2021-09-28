@@ -1,6 +1,6 @@
 {
   "name": "lexogrine_dota2_hud",
-  "version": "1.2.0",
+  "version": "1.1.0",
   "homepage": "./",
   "private": true,
   "dependencies": {
