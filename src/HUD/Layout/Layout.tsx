@@ -12,20 +12,10 @@ import Statistics from "../GameHUD/ObservedStatistics";
 import TopSideBar from "../GameHUD/TopSideBar";
 import Scoreboard, { stringToClock } from "../Scoreboard/Scoreboard";
 
-import TwitchIcon from "./../Scoreboard/twitch.png";
-import FacebookIcon from './../Scoreboard/facebook.png';
-import TwitterIcon from "./../Scoreboard/twitter.png";
-import InstragramIcon from './../Scoreboard/instagram.png';
 
 import ObservedPlayer from "../GameHUD/Game";
 import { actions, configs } from "../../App";
 
-const icons = {
-  twitch: TwitchIcon,
-  facebook: FacebookIcon,
-  instagram: InstragramIcon,
-  twitter: TwitterIcon
-} as any;
 
 interface Props {
   game: Dota2,
