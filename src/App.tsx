@@ -10,9 +10,10 @@ import Statistics from './HUD/GameHUD/ObservedStatistics';
 import TopSideBar from './HUD/GameHUD/TopSideBar';
 import "./HUD/GameHUD/gamehud.scss";
 import { exampleData } from './example';
+import { initiateConnection } from './HUD/Camera/mediaStream';
 
 const DOTA2 = new DOTA2GSI();
-const socket = io(isDev ? `localhost:${port}` : '/');
+export const socket = io(isDev ? `localhost:${port}` : '/');
 
 const isTest = false;
 
@@ -116,6 +117,7 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 
 		socket.on("readyToRegister", () => {
 			socket.emit("register", name, isDev, 'dota2');
+			initiateConnection();
 		});
 		socket.on(`hud_config`, (data: any) => {
 			configs.save(data);

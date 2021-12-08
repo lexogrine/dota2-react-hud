@@ -1,11 +1,11 @@
 import { Player } from "dotagsi";
 import React from "react";
 import Ability from "../Ability";
+import CameraContainer from "../Camera/Container";
 import "./observed.scss";
 
 
 export default class Observed extends React.Component<{ player: Player | null }> {
-
 	render() {
 		const { player } = this.props;
 		if (!player || !player.hero) return null;;
@@ -15,8 +15,8 @@ export default class Observed extends React.Component<{ player: Player | null }>
 					player.hero.name ? <div className="main_row">
 
 						<div className={`avatar`}>
-
 							<img src={`./heroes/${player.hero.name.replace('npc_dota_hero_', '')}.png`} width={140} alt={'Avatar'} />
+
 
 						</div>
 						<div className="username_container">

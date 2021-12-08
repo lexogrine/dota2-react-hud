@@ -96,6 +96,7 @@ export default class Layout extends React.Component<Props, State> {
         activeTeamBonusTime = game.draft.dire.bonus_time;
       }
     }
+    
     return (
       <>
         <div className="layout">

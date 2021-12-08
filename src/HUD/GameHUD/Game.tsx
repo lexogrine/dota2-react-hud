@@ -1,6 +1,7 @@
 import React from 'react';
 import { Draft, Team, Faction, Player, TeamDraft } from 'dotagsi';
 import { apiUrl } from '../../api/api';
+import CameraContainer from '../Camera/Container';
 
 const ObservedPlayer = ({ players, player, team, show}: { show: boolean, player: Player | null, players: Player[], team: Team | null }) => {
     const getPlayerById = (id: number) => {
@@ -30,6 +31,7 @@ const ObservedPlayer = ({ players, player, team, show}: { show: boolean, player:
 
             </div>
             <div className="player_picture">
+				<CameraContainer observedSteamid={player.steamid} />
                 {player.avatar ? <img src={player.avatar} /> : null}
             </div>
         </div> : null}
