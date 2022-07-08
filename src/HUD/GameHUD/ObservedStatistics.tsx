@@ -2,15 +2,15 @@ import React from 'react';
 import { Draft, Team, Faction, Player, TeamDraft } from 'dotagsi';
 import TopSideBar from './TopSideBar';
 
-const Statistics = ({ player, type, teamId, show}: { player: Player | null, type: Faction, teamId: string, show: boolean}) => {
+const Statistics = ({ player, type, team, show}: { player: Player | null, type: Faction, team: Team, show: boolean}) => {
     if (!player) {
 
-        return <TopSideBar type={type} teamId={teamId} show={show}>
+        return <TopSideBar type={type} team={team} show={show}>
             
         </TopSideBar>
     }
     const { gpm, xpm, kills, deaths, assists } = player;
-    return <TopSideBar type={type} teamId={teamId} show={show}>
+    return <TopSideBar type={type} team={team} show={show}>
         <div className="gpm_xpm_container">
             GPM <strong className="shadowed-text">{gpm}</strong> / XPM <strong className="shadowed-text">{xpm}</strong>
         </div>

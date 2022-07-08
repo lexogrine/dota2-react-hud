@@ -13,7 +13,7 @@ const ObservedPlayer = ({ players, player, team, show}: { show: boolean, player:
                 <div className="team_box">
                     <div className={`${player.team_name} team_bar`}></div>
                     <div className="team_logo">
-                        {team && team.id ? <img src={`${apiUrl}api/teams/logo/${team.id}`} /> : null}
+                        {team && team.id && team.logo ? <img src={`${apiUrl}api/teams/logo/${team.id}`} /> : null}
                     </div>
                 </div>
                 <div className="username shadowed-text">{player.name} { player.kills ? <div className="player_kills">

@@ -6,8 +6,6 @@ import { Dota2, DOTA2GSI, PlayerExtension } from 'dotagsi';
 import { io } from "socket.io-client";
 import { loadAvatarURL } from './api/avatars';
 import { Match } from './api/interfaces';
-import Statistics from './HUD/GameHUD/ObservedStatistics';
-import TopSideBar from './HUD/GameHUD/TopSideBar';
 import "./HUD/GameHUD/gamehud.scss";
 import { exampleData } from './example';
 import { initiateConnection } from './HUD/Camera/mediaStream';
@@ -130,7 +128,7 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 		});
 
 		socket.on("refreshHUD", () => {
-			window.top.location.reload();
+			window.top && window.top.location.reload();
 		});
 
 		DOTA2.on('data', data => {
@@ -189,7 +187,7 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 
 
 				}).catch(() => {
-					dataLoader.match = null;
+					//dataLoader.match = null;
 				});
 			});
 		}

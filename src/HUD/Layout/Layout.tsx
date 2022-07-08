@@ -130,10 +130,10 @@ export default class Layout extends React.Component<Props, State> {
         <Statistics
           player={game.player}
           type="radiant"
-          teamId={game.map.radiant && game.map.radiant.id || ''}
+          team={game.map.radiant}
           show={view === 'game'}
         />
-        <TopSideBar type="dire" teamId={game.map.dire && game.map.dire.id || ''} show={view === 'game'}>
+        <TopSideBar type="dire" team={game.map.dire} show={view === 'game'}>
           <span>{this.state.text}</span>
 
         </TopSideBar>

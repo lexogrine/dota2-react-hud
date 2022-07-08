@@ -72,7 +72,7 @@ const Scoreboard = ({ map, players, match, show }: { players: Player[], match: M
     return <>
         <div className={`top_board ${!show ? 'hide' : ''}`}>
             <div className="team_logo">
-                {map.radiant.id ? <img src={`${apiUrl}api/teams/logo/${map.radiant.id}`} /> : null}
+                {map.radiant.id && map.radiant.logo ? <img src={`${apiUrl}api/teams/logo/${map.radiant.id}`} /> : null}
             </div>
             {map.radiant.name}
             <div className="score_info">
@@ -93,7 +93,7 @@ const Scoreboard = ({ map, players, match, show }: { players: Player[], match: M
             </div>
             {map.dire.name}
             <div className="team_logo">
-                {map.dire.id ? <img src={`${apiUrl}api/teams/logo/${map.dire.id}`} /> : null}
+                {map.dire.id && map.dire.logo ? <img src={`${apiUrl}api/teams/logo/${map.dire.id}`} /> : null}
             </div>
         </div>
         <div className={`players_scoreboard ${!show ? 'hide' : ''}`}>
