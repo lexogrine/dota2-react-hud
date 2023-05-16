@@ -9,6 +9,7 @@ import { Match } from './api/interfaces';
 import "./HUD/GameHUD/gamehud.scss";
 import { exampleData } from './example';
 import { initiateConnection } from './HUD/Camera/mediaStream';
+import { GameSummary } from './summaries';
 
 const DOTA2 = new DOTA2GSI();
 export const socket = io(isDev ? `localhost:${port}` : '/');
@@ -46,14 +47,22 @@ const dataLoader: DataLoader = {
 	match: null
 }
 
-class App extends React.Component<any, { game: Dota2 | null, steamids: string[], match: Match | null, checked: boolean }> {
+class App extends React.Component<any, { game: Dota2 | null,summary: GameSummary; steamids: string[], match: Match | null, checked: boolean }> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
 			game: null,
 			steamids: [],
 			match: null,
-			checked: false
+			checked: false,
+			summary: {
+				players: {},
+				tickSummary: {
+					creepsKilled: [],
+					abilitiesHit: [],
+					abilitiesUsed: []
+				}
+			}
 		}
 	}
 
@@ -129,6 +138,10 @@ class App extends React.Component<any, { game: Dota2 | null, steamids: string[],
 
 		socket.on("refreshHUD", () => {
 			window.top && window.top.location.reload();
+		});
+		
+		socket.on("combatLogUpdate", (summary: GameSummary) => {
+		  this.setState({ summary });
 		});
 
 		DOTA2.on('data', data => {
