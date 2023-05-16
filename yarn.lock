@@ -3926,10 +3926,9 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotagsi@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.npmjs.org/dotagsi/-/dotagsi-1.1.3.tgz"
-  integrity sha512-6xVd4f9umWEvth2Jf4XThd4AuF2AIyrt9q+iYaC8I0sKFGwko3drUdM1HOzOb/3YSjPPNF5ni07eP4ZC589l9Q==
+"dotagsi@github:Macronic/dota2gsi":
+  version "1.3.2"
+  resolved "git+ssh://git@github.com/Macronic/dota2gsi.git#df17e53279c67c54b02e583c1ba57eb185197d83"
 
 dotenv-expand@^5.1.0:
   version "5.1.0"

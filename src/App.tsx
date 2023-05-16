@@ -7,7 +7,7 @@ import io from "socket.io-client";
 import { loadAvatarURL } from './api/avatars';
 import { Match } from './api/interfaces';
 import "./HUD/GameHUD/gamehud.scss";
-import { exampleData } from './example';
+//import { exampleData } from './example';
 import { initiateConnection } from './HUD/Camera/mediaStream';
 import { GameSummary } from './summaries';
 
@@ -15,7 +15,7 @@ const DOTA2 = new DOTA2GSI();
 export const socket = io(isDev ? `localhost:${port}` : '/');
 
 const isTest = false;
-
+/*
 if (isTest) {
 	setTimeout(() => {
 		DOTA2.digest(exampleData);
@@ -23,7 +23,7 @@ if (isTest) {
 	setTimeout(() => {
 		DOTA2.digest(exampleData)
 	}, 2000)
-}
+}*/
 let i = 0;
 socket.on('update', (data: any) => {
 	if (!i) console.log(data);
