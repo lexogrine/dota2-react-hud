@@ -4,7 +4,7 @@ import RadiantBorder from './radiantBorder.png';
 import DireBorder from './direBorder.png';
 import "./scoreboard.scss";
 import { Match } from '../../api/interfaces';
-import { apiUrl } from '../../api/api';
+import { apiUrl, getAssetURL } from '../../api/api';
 export function stringToClock(time: string | number, pad = true) {
     if (typeof time === "string") {
         time = parseFloat(time);
@@ -28,7 +28,7 @@ const ScoreboardPlayer = ({ player }: { player: Player }) => {
 
                 { player.hero && player.hero.name ? <video muted={true} autoPlay={true} loop={true} width="145">
 
-                    <source src={`./heroes/animated/${player.hero.name}.webm`}
+                    <source src={getAssetURL(player.hero.name, 'heroes_animated')}
                         type="video/webm" />
 
 
@@ -55,11 +55,11 @@ const ScoreboardPlayer = ({ player }: { player: Player }) => {
         </div>
         <div className="skills">
             {
-                player.items.filter(item => item.type === "slot" && item.id < 6).map(item => <div className="item-slot">{item.name !== "empty" ? <img src={`./items/${item.name.replace('item_', '')}.png`} height={57} /> : null}</div>)
+                player.items.filter(item => item.type === "slot" && item.id < 6).map(item => <div className="item-slot">{item.name !== "empty" ? <img src={getAssetURL(item.name, 'items')} height={57} /> : null}</div>)
             }
         </div>
         { neutralItem ? <div className="neutral-item">
-            {neutralItem.name !== "empty" ? <img src={`./items/${neutralItem.name.replace('item_', '')}.png`} height={57} /> : null}
+            {neutralItem.name !== "empty" ? <img src={getAssetURL(neutralItem.name, 'items')} height={57} /> : null}
         </div> : null}
     </div>
 }

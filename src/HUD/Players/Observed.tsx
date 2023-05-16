@@ -3,6 +3,7 @@ import React from "react";
 import Ability from "../Ability";
 import CameraContainer from "../Camera/Container";
 import "./observed.scss";
+import { getAssetURL } from "../../api/api";
 
 
 export default class Observed extends React.Component<{ player: Player | null }> {
@@ -15,7 +16,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 					player.hero.name ? <div className="main_row">
 
 						<div className={`avatar`}>
-							<img src={`./heroes/${player.hero.name.replace('npc_dota_hero_', '')}.png`} width={140} alt={'Avatar'} />
+							<img src={getAssetURL(player.hero.name, "heroes")} width={140} alt={'Avatar'} />
 
 
 						</div>
@@ -35,7 +36,7 @@ export default class Observed extends React.Component<{ player: Player | null }>
 					</div>
 					<div className="statistics">
 						{
-							player.items.filter(item => item.type === "slot").map(item => item.name !== "empty" ? <img src={`./items/${item.name.replace('item_', '')}.png`} height={43} /> : null)
+							player.items.filter(item => item.type === "slot").map(item => item.name !== "empty" ? <img src={getAssetURL(item.name, 'items')} height={43} /> : null)
 						}
 					</div>
 					<div className="bar-container">

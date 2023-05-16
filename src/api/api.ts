@@ -10,6 +10,38 @@ export const isDev = !query.isProd;
 export const config = {apiAddress:isDev ? `http://localhost:${port}/` : '/'}
 export const apiUrl = config.apiAddress;
 
+export const getAssetURL = (
+    asset: string | null | undefined,
+    assetType:
+      | "heroes_animated"
+      | "heroes_icons"
+      | "heroes"
+      | "items"
+      | "abilities"
+      | "runes"
+  ) => {
+    if (!asset) return "";
+    if (assetType === "heroes_animated") {
+      return `${apiUrl}static/dota2/heroes/animated/${asset}.webm`;
+    }
+    if (assetType === "heroes_icons") {
+      return `${apiUrl}static/dota2/heroes/icons/${asset}.png`;
+    }
+    if (assetType === "items") {
+      return `${apiUrl}static/dota2/${assetType}/${asset.replace(
+        /^item_/,
+        ""
+      )}.webp`;
+    }
+    if (assetType === "heroes") {
+      return `${apiUrl}static/dota2/${assetType}/${asset.replace(
+        "npc_dota_hero_",
+        ""
+      )}.webp`;
+    }
+    return `${apiUrl}static/dota2/${assetType}/${asset}.webp`;
+  };
+  
 export async function apiV2(url: string, method = 'GET', body?: any) {
     const options: RequestInit = {
         method,

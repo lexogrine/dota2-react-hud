@@ -1,6 +1,6 @@
 import React from 'react';
 import { Draft, Team, Faction, Player, TeamDraft } from 'dotagsi';
-import { apiUrl } from '../../api/api';
+import { apiUrl, getAssetURL } from '../../api/api';
 import CameraContainer from '../Camera/Container';
 
 const ObservedPlayer = ({ players, player, team, show}: { show: boolean, player: Player | null, players: Player[], team: Team | null }) => {
@@ -23,7 +23,7 @@ const ObservedPlayer = ({ players, player, team, show}: { show: boolean, player:
                             if(!victim || !victim.hero || !victim.hero.name) return null;
 
                             return (
-                                <div className="player_kill" style={{ backgroundImage: `url('./heroes/icons/${victim.hero.name.replace('npc_dota_hero_', '')}.png')` }}>X{killEntry.amount}</div>
+                                <div className="player_kill" style={{ backgroundImage: `url('${getAssetURL(victim.hero.name, 'heroes_icons')}')` }}>X{killEntry.amount}</div>
                             );
                         })
                     }</div> : null}

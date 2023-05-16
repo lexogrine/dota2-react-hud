@@ -1,6 +1,7 @@
 import React from 'react';
 import { Draft, DraftEntry, Faction, TeamDraft } from 'dotagsi';
 import Snow from "./snowflake.png";
+import { getAssetURL } from '../../api/api';
 const PlayerPick = ({ entry, type, active }: { entry: DraftEntry, type: Faction, active: boolean }) => {
     const order = entry.order + 1;
     let lastPart = 'th';
@@ -24,7 +25,7 @@ const PlayerPick = ({ entry, type, active }: { entry: DraftEntry, type: Faction,
             </div>
             {entry.class ? <video muted={true} autoPlay={true} loop={true} width="123">
 
-                <source src={`./heroes/animated/npc_dota_hero_${entry.class}.webm`}
+                <source src={getAssetURL(entry.class, "heroes_animated")}
                     type="video/webm" />
 
 
@@ -50,7 +51,7 @@ export const PlayerBan = ({ entry, type, active }: { entry: DraftEntry, type: Fa
 
     return <div className={`player_ban ${entry.order} ${type} ${active ? 'active' : ''}`}>
         <div className="player_preview">
-            <img src={`./heroes/${entry.class}.png`} />
+            <img src={getAssetURL(entry.class, "heroes")} />
         </div>
     </div>
 }
