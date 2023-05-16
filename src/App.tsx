@@ -3,7 +3,7 @@ import Layout from './HUD/Layout/Layout';
 import api, { port, isDev } from './api/api';
 import ActionManager, { ConfigManager } from './api/actionManager';
 import { Dota2, DOTA2GSI, PlayerExtension } from 'dotagsi';
-import { io } from "socket.io-client";
+import io from "socket.io-client";
 import { loadAvatarURL } from './api/avatars';
 import { Match } from './api/interfaces';
 import "./HUD/GameHUD/gamehud.scss";
