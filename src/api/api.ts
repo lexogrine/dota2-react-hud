@@ -22,7 +22,7 @@ export const getAssetURL = (
   ) => {
     if (!asset) return "";
     if (assetType === "heroes_animated") {
-      return `${apiUrl}static/dota2/heroes/animated/${asset}.webm`;
+      return `${apiUrl}static/dota2/heroes/animated/${asset.startsWith("npc_dota_hero_")? asset : `npc_dota_hero_${asset}`}.webm`;
     }
     if (assetType === "heroes_icons") {
       return `${apiUrl}static/dota2/heroes/icons/${asset}.png`;
