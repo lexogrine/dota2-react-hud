@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from './HUD/Layout/Layout';
 import api, { port, isDev } from './api/api';
 import ActionManager, { ConfigManager } from './api/actionManager';
-import { Dota2, DOTA2GSI, PlayerExtension } from 'dotagsi';
+import { Dota2, DOTA2GSI, PlayerExtension, TeamExtension } from 'dotagsi';
 import io from "socket.io-client";
 import { loadAvatarURL } from './api/avatars';
 import { Match } from './api/interfaces';
@@ -181,7 +181,7 @@ class App extends React.Component<any, { game: Dota2 | null,summary: GameSummary
 
 					if (match.left.id) {
 						api.teams.getOne(match.left.id).then(left => {
-							const gsiTeamData = { id: left._id, name: left.name, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra };
+							const gsiTeamData: TeamExtension = { id: left._id, name: left.name, short_name: left.shortName, country: left.country, logo: left.logo, map_score: match.left.wins, extra: left.extra, };
 							if (!isReversed) {
 								DOTA2.teams.radiant = gsiTeamData;
 							}
@@ -190,7 +190,7 @@ class App extends React.Component<any, { game: Dota2 | null,summary: GameSummary
 					}
 					if (match.right.id) {
 						api.teams.getOne(match.right.id).then(right => {
-							const gsiTeamData = { id: right._id, name: right.name, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra };
+							const gsiTeamData: TeamExtension = { id: right._id, name: right.name, short_name: right.shortName, country: right.country, logo: right.logo, map_score: match.right.wins, extra: right.extra };
 
 							if (!isReversed) DOTA2.teams.dire = gsiTeamData;
 							else DOTA2.teams.radiant = gsiTeamData;
