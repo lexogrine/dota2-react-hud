@@ -21,9 +21,9 @@ export function stringToClock(time: string | number, pad = true) {
 const ScoreboardPlayer = ({ player }: { player: Player }) => {
     const neutralItem = player.items.find(item => item.type === 'neutral');
 
-    const facetIndex = player.hero?.facetIndex;
+    const facetIndex = player.hero?.facetIndex ?? null;
     const facets = heroFacets[(player.hero?.name || "")] ?? [];
-    const facet = facetIndex ? facets[facetIndex] : null;
+    const facet = facetIndex !== null ? facets[facetIndex] : null;
 
     if(facet){
         const _facetUrl = getAssetURL(facet.icon, "facets")
