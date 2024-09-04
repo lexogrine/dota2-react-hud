@@ -19,6 +19,7 @@ export const getAssetURL = (
       | "items"
       | "abilities"
       | "runes"
+      | "facets"
   ) => {
     if (!asset) return "";
     if (assetType === "heroes_animated") {
@@ -38,6 +39,9 @@ export const getAssetURL = (
         "npc_dota_hero_",
         ""
       )}.webp`;
+    }
+    if(assetType === "facets"){
+      return `${apiUrl}static/dota2/${assetType}/${asset}.png`;
     }
     return `${apiUrl}static/dota2/${assetType}/${asset}.webp`;
   };

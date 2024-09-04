@@ -3926,10 +3926,10 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotagsi@^1.4.3:
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/dotagsi/-/dotagsi-1.4.3.tgz"
-  integrity sha512-6yksHABW4InBVJ+IOgKXwN3UtTiRdPLsIHVJeswDco6rWUZxMWYXS4YZlpcdMbBX539rdmLiNzGq08ZW64lKqg==
+dotagsi@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.npmjs.org/dotagsi/-/dotagsi-1.5.0.tgz"
+  integrity sha512-wbkmoCXhpyddgGA3swuTtRNVnLggktiiNQ9/yapWg2eNOyKLOQCvjesCu3bkwtL77AHjxyz9rKACxCoINEVivA==
 
 dotenv-expand@^5.1.0:
   version "5.1.0"

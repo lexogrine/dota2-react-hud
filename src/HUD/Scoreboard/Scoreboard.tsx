@@ -5,6 +5,7 @@ import DireBorder from './direBorder.png';
 import "./scoreboard.scss";
 import { Match } from '../../api/interfaces';
 import { apiUrl, getAssetURL } from '../../api/api';
+import { heroFacets } from '../../api/heroFacets';
 export function stringToClock(time: string | number, pad = true) {
     if (typeof time === "string") {
         time = parseFloat(time);
@@ -19,6 +20,15 @@ export function stringToClock(time: string | number, pad = true) {
 }
 const ScoreboardPlayer = ({ player }: { player: Player }) => {
     const neutralItem = player.items.find(item => item.type === 'neutral');
+
+    const facetIndex = player.hero?.facetIndex;
+    const facets = heroFacets[(player.hero?.name || "")] ?? [];
+    const facet = facetIndex ? facets[facetIndex] : null;
+
+    if(facet){
+        const _facetUrl = getAssetURL(facet.icon, "facets")
+    }
+    
     return <div className={`player_scoreboard`}>
         <div className="main_panel">
             <div className="player_name shadowed-text">
