@@ -1,4 +1,6 @@
-### **Dota 2 React HUD for [LHM.gg](http://LHM.gg)** Dota2 React HUD for [LHM.gg](http://LHM.gg), created by Lexogrine, is an open source Dota 2 HUD that you can use and modify to your needs. It’s the core element of building customized Dota 2 HUDs and spectator overlays for the [LHM.gg](http://LHM.gg) platform.
+### **Dota 2 React HUD for [LHM.gg](http://LHM.gg)**
+
+Dota2 React HUD for [LHM.gg](http://LHM.gg), created by Lexogrine, is an open source Dota 2 HUD that you can use and modify to your needs. It’s the core element of building customized Dota 2 HUDs and spectator overlays for the [LHM.gg](http://LHM.gg) platform.
 
 It comes with a set of default options and features that you can use for creating your unique esport experience.
 
